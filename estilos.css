@@ -247,9 +247,75 @@ video {
     }
 }
 
+/* Ajustes para botones en pantallas pequeñas */
+@media (max-width: 767px) {
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+
+    .team span {
+        font-size: 12px;
+    }
+}
+
 /* Estilos para el mensaje de fin */
 #end-message-container h2 {
     font-family: 'Pokemon Solid', sans-serif;
     color: #ffcb05;
     text-shadow: 2px 2px #3b4cca;
 }
+    .match {
+        width: 45%;
+        margin: 20px;
+    }
+}
+
+/* Media query para pantallas medianas */
+@media (min-width: 768px) and (max-width: 1199px) {
+        flex-wrap: wrap;
+    }
+
+
+/* Media query para pantallas pequeñas y móviles */
+@media (max-width: 767px) {
+    header, footer {
+        flex-direction: column;
+        text-align: center;
+    }
+        width: 80px;
+        height: 80px;
+    }
+
+    #timer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+        margin: 10px 0;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Estilos para el mensaje de fin */
+#end-message-container h2 {
+    font-family: 'Pokemon Solid', sans-serif;
+    color: #ffcb05;
+    text-shadow: 2px 2px #3b4cca;
+}
+    .match {
+        width: 90%;
+
+    .team img {
+    .match {
+        width: 60%;
+        margin: 15px;
+    }
+}
+    #bracket {
+        flex-direction: row;
