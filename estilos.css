@@ -1,0 +1,255 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://i.imgur.com/your-pokemon-background.jpg'); /* Reemplaza con la URL de tu imagen */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #f0f0f0; /* Color de respaldo */
+    position: relative; /* Posicionamiento necesario para el pseudo-elemento */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/fondo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.3; /* Ajusta la opacidad según prefieras */
+    z-index: -1; /* Asegura que la imagen quede detrás del contenido */
+}
+
+header, footer {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    /* Added to center content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
+}
+
+main {
+    padding: 20px;
+    flex: 1;
+}
+
+/* Estilos actualizados para el contenedor del temporizador */
+#timer-container {
+    /* Eliminado: position: fixed; */
+    /* Removed background-color, border, etc., if necessary */
+    background-color: #fff;
+    border: 2px solid #333;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* Asegura margen adecuado */
+}
+
+#timer {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#bracket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center; /* Changed from space-around to center */
+}
+
+.match {
+    position: relative; /* Asegura que el pseudo-elemento se posicione correctamente */
+    background-color: #f0f0f0; /* Recuadro de fondo */
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 80%; /* Changed from 60% to make it more responsive */
+    max-width: 600px; /* Added max-width for better responsiveness */
+    margin: 10px auto; /* Center the match boxes */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Oculta el exceso de la imagen de fondo */
+}
+
+.match::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/campobatalla.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5; /* Ajusta la opacidad según prefieras */
+    z-index: 0; /* Envía la imagen al fondo */
+}
+
+.match > * {
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté por encima de la imagen de fondo */
+}
+
+.match-number {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.vs {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.team {
+    display: flex;
+    flex-direction: column; /* Changed from row to column */
+    align-items: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.team img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    margin-left: 10px;
+    border: 3px solid #ffcb05; /* Borde decorativo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.team img:hover {
+    transform: rotate(10deg);
+}
+
+.team span {
+    position: static; /* Changed from absolute to static */
+    bottom: 10px;
+    left: 50%;
+    transform: none;
+    margin-top: 5px; /* Add spacing above the team name */
+    color: #fff; /* Nombre del equipo en blanco */
+    background-color: rgba(0, 0, 0, 0.7); /* Darker background for better contrast */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px; /* Adjusted font size */
+}
+
+button {
+    /* ...existing code... */
+    /* margin: 10px; */
+    /* padding: 10px 20px; */
+    /* background-color: #ffcb05; */
+    /* border: 2px solid #3b4cca; */
+    /* border-radius: 5px; */
+    /* cursor: pointer; */
+    /* font-size: 16px; */
+    /* color: #3b4cca; */
+    /* font-family: 'Pokemon Solid', sans-serif; */
+    /* transition: transform 0.2s, box-shadow 0.2s; */
+    /* ...existing code... */
+}
+
+button:hover {
+    /* ...existing code... */
+    /* background-color: #ffa700; */
+    /* transform: scale(1.05); */
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); */
+    /* ...existing code... */
+}
+
+video {
+    margin-top: 20px;
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .match {
+        width: 85%;
+    }
+
+    .team img {
+        /* width: 110px; */
+        /* height: 110px; */
+    }
+}
+
+@media (max-width: 768px) {
+    .match {
+        width: 90%;
+    }
+
+    .team img {
+        /* width: 100px; */
+        /* height: 100px; */
+    }
+
+    .vs {
+        font-size: 20px;
+    }
+
+    #timer-container {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        width: auto;
+        flex-direction: column;
+        padding: 8px;
+    }
+
+    #timer {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .match {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .team img {
+        /* width: 80px; */
+        /* height: 80px; */
+    }
+
+    .vs {
+        font-size: 18px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+/* Estilos para el mensaje de fin */
+#end-message-container h2 {
+    font-family: 'Pokemon Solid', sans-serif;
+    color: #ffcb05;
+    text-shadow: 2px 2px #3b4cca;
+}
