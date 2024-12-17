@@ -1,5 +1,4 @@
-/* styles.css */
-
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,6 +14,7 @@ body {
     min-height: 100vh;
 }
 
+/* Pseudo-elemento para la imagen de fondo */
 body::before {
     content: "";
     position: fixed;
@@ -30,27 +30,26 @@ body::before {
     z-index: -1; /* Asegura que la imagen quede detrás del contenido */
 }
 
+/* Estilos para el encabezado y pie de página */
 header, footer {
     background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
     color: #fff;
     text-align: center;
     padding: 10px;
-    /* Added to center content */
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
 }
 
+/* Estilos para el contenido principal */
 main {
     padding: 20px;
     flex: 1;
 }
 
-/* Estilos actualizados para el contenedor del temporizador */
+/* Contenedor del temporizador */
 #timer-container {
-    /* Eliminado: position: fixed; */
-    /* Removed background-color, border, etc., if necessary */
     background-color: #fff;
     border: 2px solid #333;
     padding: 10px;
@@ -59,37 +58,41 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px; /* Asegura margen adecuado */
+    margin-bottom: 20px; /* Margen adecuado */
 }
 
+/* Estilo del temporizador */
 #timer {
     font-size: 18px;
     margin-bottom: 20px;
 }
 
-#bracket {
+/* Cuadro de cruces */
+#cuadroCruces {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: center; /* Changed from space-around to center */
+    justify-content: center;
 }
 
-.match {
-    position: relative; /* Asegura que el pseudo-elemento se posicione correctamente */
-    background-color: #f0f0f0; /* Recuadro de fondo */
+/* Estilo de cada combate */
+.combate {
+    position: relative; /* Posicionamiento correcto para el pseudo-elemento */
+    background-color: #f0f0f0; /* Fondo del combate */
     border: 1px solid #ccc;
     padding: 20px;
-    width: 80%; /* Changed from 60% to make it more responsive */
-    max-width: 600px; /* Added max-width for better responsiveness */
-    margin: 10px auto; /* Center the match boxes */
+    width: 80%; /* Más responsivo */
+    max-width: 600px; /* Máximo ancho para mejor responsividad */
+    margin: 10px auto; /* Centrar los combates */
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
-    border-radius: 8px; /* Rounded corners */
-    overflow: hidden; /* Oculta el exceso de la imagen de fondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Ocultar exceso de imagen de fondo */
 }
 
-.match::before {
+/* Imagen de fondo en cada combate */
+.combate::before {
     content: "";
     position: absolute;
     top: 0;
@@ -100,35 +103,40 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.5; /* Ajusta la opacidad según prefieras */
-    z-index: 0; /* Envía la imagen al fondo */
+    opacity: 0.5; /* Opacidad ajustable */
+    z-index: 0; /* Imagen al fondo */
 }
 
-.match > * {
+/* Contenido sobre la imagen de fondo */
+.combate > * {
     position: relative;
-    z-index: 1; /* Asegura que el contenido esté por encima de la imagen de fondo */
+    z-index: 1;
 }
 
-.match-number {
+/* Número del combate */
+.numero-combate {
     font-weight: bold;
     margin-bottom: 10px;
 }
 
+/* Texto VS */
 .vs {
     font-size: 24px;
     font-weight: bold;
     margin: 10px 0;
 }
 
-.team {
+/* Estilo de cada equipo */
+.equipo {
     display: flex;
-    flex-direction: column; /* Changed from row to column */
+    flex-direction: column;
     align-items: center;
     position: relative;
     margin-bottom: 10px;
 }
 
-.team img {
+/* Imagen del equipo */
+.equipo img {
     width: 120px;
     height: 120px;
     border-radius: 10px;
@@ -138,72 +146,39 @@ main {
     transition: transform 0.3s;
 }
 
-.team img:hover {
+/* Efecto al pasar el ratón sobre la imagen */
+.equipo img:hover {
     transform: rotate(10deg);
 }
 
-.team span {
-    position: static; /* Changed from absolute to static */
-    bottom: 10px;
-    left: 50%;
-    transform: none;
-    margin-top: 5px; /* Add spacing above the team name */
-    color: #fff; /* Nombre del equipo en blanco */
-    background-color: rgba(0, 0, 0, 0.7); /* Darker background for better contrast */
+/* Nombre del equipo */
+.equipo span {
+    position: static; /* Posicionamiento estático */
+    margin-top: 5px; /* Espaciado arriba del nombre */
+    color: #fff; /* Nombre en blanco */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para mejor contraste */
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 14px; /* Adjusted font size */
+    font-size: 14px; /* Tamaño de fuente ajustado */
 }
 
-button {
-    /* ...existing code... */
-    /* margin: 10px; */
-    /* padding: 10px 20px; */
-    /* background-color: #ffcb05; */
-    /* border: 2px solid #3b4cca; */
-    /* border-radius: 5px; */
-    /* cursor: pointer; */
-    /* font-size: 16px; */
-    /* color: #3b4cca; */
-    /* font-family: 'Pokemon Solid', sans-serif; */
-    /* transition: transform 0.2s, box-shadow 0.2s; */
-    /* ...existing code... */
-}
-
-button:hover {
-    /* ...existing code... */
-    /* background-color: #ffa700; */
-    /* transform: scale(1.05); */
-    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); */
-    /* ...existing code... */
-}
-
+/* Estilo del video en mensaje de fin */
 video {
     margin-top: 20px;
     border: 2px solid #333;
     border-radius: 8px;
 }
 
-/* Responsive design */
+/* Diseño responsivo */
 @media (max-width: 1024px) {
-    .match {
+    .combate {
         width: 85%;
-    }
-
-    .team img {
-        /* width: 110px; */
-        /* height: 110px; */
     }
 }
 
 @media (max-width: 768px) {
-    .match {
+    .combate {
         width: 90%;
-    }
-
-    .team img {
-        /* width: 100px; */
-        /* height: 100px; */
     }
 
     .vs {
@@ -211,12 +186,8 @@ video {
     }
 
     #timer-container {
-        top: auto;
-        bottom: 20px;
-        right: 20px;
-        left: 20px;
-        width: auto;
         flex-direction: column;
+        align-items: center;
         padding: 8px;
     }
 
@@ -224,17 +195,18 @@ video {
         font-size: 16px;
         margin-bottom: 10px;
     }
+
+    /* Ajustes para botones en pantallas pequeñas */
+    button {
+        width: 100%;
+        padding: 12px;
+    }
 }
 
 @media (max-width: 480px) {
-    .match {
+    .combate {
         width: 100%;
         padding: 15px;
-    }
-
-    .team img {
-        /* width: 80px; */
-        /* height: 80px; */
     }
 
     .vs {
@@ -246,76 +218,3 @@ video {
         padding: 12px;
     }
 }
-
-/* Ajustes para botones en pantallas pequeñas */
-@media (max-width: 767px) {
-    button {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
-
-
-    .team span {
-        font-size: 12px;
-    }
-}
-
-/* Estilos para el mensaje de fin */
-#end-message-container h2 {
-    font-family: 'Pokemon Solid', sans-serif;
-    color: #ffcb05;
-    text-shadow: 2px 2px #3b4cca;
-}
-    .match {
-        width: 45%;
-        margin: 20px;
-    }
-}
-
-/* Media query para pantallas medianas */
-@media (min-width: 768px) and (max-width: 1199px) {
-        flex-wrap: wrap;
-    }
-
-
-/* Media query para pantallas pequeñas y móviles */
-@media (max-width: 767px) {
-    header, footer {
-        flex-direction: column;
-        text-align: center;
-    }
-        width: 80px;
-        height: 80px;
-    }
-
-    #timer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-        margin: 10px 0;
-    }
-
-    button {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-}
-
-/* Estilos para el mensaje de fin */
-#end-message-container h2 {
-    font-family: 'Pokemon Solid', sans-serif;
-    color: #ffcb05;
-    text-shadow: 2px 2px #3b4cca;
-}
-    .match {
-        width: 90%;
-
-    .team img {
-    .match {
-        width: 60%;
-        margin: 15px;
-    }
-}
-    #bracket {
-        flex-direction: row;
