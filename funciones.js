@@ -136,6 +136,7 @@ function mostrarMensajeFin() {
     video.src = 'video/charizard.mp4';
     video.controls = true;
     video.autoplay = true;
+    video.loop = true;
     video.width = 600;
     contenedorMensajeFin.appendChild(video);
 }
