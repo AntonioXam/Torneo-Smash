@@ -1,24 +1,29 @@
-// Lista de equipos participantes
+class Equipo {
+    constructor(nombre, imagen) {
+        this.nombre = nombre;
+        this.imagen = imagen;
+    }
+}
+
 const equipos = [
-    { nombre: "Equipo Pikachu", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" },
-    { nombre: "Equipo Bulbasaur", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" },
-    { nombre: "Equipo Charmander", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png" },
-    { nombre: "Equipo Squirtle", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png" },
-    { nombre: "Equipo Jigglypuff", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png" },
-    { nombre: "Equipo Meowth", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/52.png" },
-    { nombre: "Equipo Psyduck", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png" },
-    { nombre: "Equipo Snorlax", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png" },
-    { nombre: "Equipo Eevee", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png" },
-    { nombre: "Equipo Vaporeon", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png" },
-    { nombre: "Equipo Jolteon", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png" },
-    { nombre: "Equipo Flareon", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/136.png" },
-    { nombre: "Equipo Mewtwo", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png" },
-    { nombre: "Equipo Gengar", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png" },
-    { nombre: "Equipo Lapras", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png" },
-    { nombre: "Equipo Dragonite", imagen: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png" }
+    new Equipo("Equipo Pikachu", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"),
+    new Equipo("Equipo Bulbasaur", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"),
+    new Equipo("Equipo Charmander", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"),
+    new Equipo("Equipo Squirtle", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"),
+    new Equipo("Equipo Jigglypuff", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png"),
+    new Equipo("Equipo Meowth", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/52.png"),
+    new Equipo("Equipo Psyduck", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png"),
+    new Equipo("Equipo Snorlax", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png"),
+    new Equipo("Equipo Eevee", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/133.png"),
+    new Equipo("Equipo Vaporeon", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png"),
+    new Equipo("Equipo Jolteon", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png"),
+    new Equipo("Equipo Flareon", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/136.png"),
+    new Equipo("Equipo Mewtwo", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png"),
+    new Equipo("Equipo Gengar", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/94.png"),
+    new Equipo("Equipo Lapras", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png"),
+    new Equipo("Equipo Dragonite", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png")
 ];
 
-// Copia de los equipos disponibles para generar combates
 let equiposDisponibles = [...equipos];
 let combatesGenerados = 0;
 const cuadroCruces = document.getElementById('cuadroCruces');
@@ -29,7 +34,7 @@ let temporizador;
 let segundosTranscurridos = 0;
 let numeroCombate = 1;
 
-// Iniciar el temporizador
+// Función para iniciar el temporizador
 function iniciarTemporizador() {
     temporizador = setInterval(() => {
         segundosTranscurridos++;
@@ -37,12 +42,21 @@ function iniciarTemporizador() {
     }, 1000);
 }
 
-// Detener el temporizador
+// Función para detener el temporizador
 function detenerTemporizador() {
     clearInterval(temporizador);
 }
 
-// Generar un nuevo combate
+// Función para generar un nuevo combate
+/**
+ * Genera un nuevo combate aleatorio entre dos equipos disponibles.
+ * Esta función maneja la creación y visualización de un enfrentamiento entre equipos,
+ * incluyendo la selección aleatoria de participantes y la construcción del DOM necesario
+ * para mostrar el combate en la interfaz.
+ * 
+ * Si no hay suficientes equipos disponibles para generar un combate, la función
+ * deshabilita el botón de generación de combates y muestra un mensaje de fin de combates.
+ */
 function generarCombate() {
     if (equiposDisponibles.length < 2) {
         botonGenerar.disabled = true;
@@ -53,43 +67,29 @@ function generarCombate() {
 
     const combateActual = numeroCombate++;
 
-    // Seleccionar aleatoriamente dos equipos
-    let indiceEquipo1 = Math.floor(Math.random() * equiposDisponibles.length);
-    let equipo1 = equiposDisponibles.splice(indiceEquipo1, 1)[0];
+    let equipo1 = equiposDisponibles.splice(Math.floor(Math.random() * equiposDisponibles.length), 1)[0];
+    let equipo2 = equiposDisponibles.splice(Math.floor(Math.random() * equiposDisponibles.length), 1)[0];
 
-    let indiceEquipo2 = Math.floor(Math.random() * equiposDisponibles.length);
-    let equipo2 = equiposDisponibles.splice(indiceEquipo2, 1)[0];
-
-    // Crear contenedor para el combate
     const divCombate = document.createElement('div');
     divCombate.classList.add('combate');
 
-    // Número del combate
     const divNumeroCombate = document.createElement('div');
     divNumeroCombate.classList.add('numero-combate');
     divNumeroCombate.textContent = `Combate ${combateActual}`;
 
-    // Texto VS
     const divVS = document.createElement('div');
     divVS.classList.add('vs');
     divVS.textContent = 'VS';
 
-    // Crear visualización de los equipos
     const divEquipo1 = crearDivEquipo(equipo1);
     const divEquipo2 = crearDivEquipo(equipo2);
 
-    // Agregar elementos al contenedor del combate
-    divCombate.appendChild(divNumeroCombate);
-    divCombate.appendChild(divEquipo1);
-    divCombate.appendChild(divVS);
-    divCombate.appendChild(divEquipo2);
+    divCombate.append(divNumeroCombate, divEquipo1, divVS, divEquipo2);
 
-    // Insertar el combate en el cuadro de cruces
     cuadroCruces.insertBefore(divCombate, cuadroCruces.firstChild);
 
     combatesGenerados++;
 
-    // Verificar si se han generado todos los combates posibles
     if (combatesGenerados === equipos.length / 2) {
         botonGenerar.disabled = true;
         mostrarMensajeFin();
@@ -97,7 +97,17 @@ function generarCombate() {
     }
 }
 
-// Crear un div para un equipo
+
+/**
+ * Crea y devuelve un nuevo elemento div que representa un equipo con su imagen y nombre.
+ * Esta función genera un contenedor div con la clase 'equipo' que incluye:
+ * - Un elemento img con la imagen del equipo y texto alternativo
+ * - Un elemento span que contiene el nombre del equipo
+ * Los elementos se añaden en ese orden dentro del contenedor div
+ *
+ * @returns {HTMLDivElement} Un elemento div que contiene la imagen y nombre del equipo
+ */
+
 function crearDivEquipo(equipo) {
     const divEquipo = document.createElement('div');
     divEquipo.classList.add('equipo');
@@ -109,13 +119,12 @@ function crearDivEquipo(equipo) {
     const nombre = document.createElement('span');
     nombre.textContent = equipo.nombre;
 
-    divEquipo.appendChild(img);
-    divEquipo.appendChild(nombre);
+    divEquipo.append(img, nombre);
 
     return divEquipo;
 }
 
-// Reiniciar la aplicación
+// Función para reiniciar la aplicación
 function reiniciarAplicacion() {
     equiposDisponibles = [...equipos];
     combatesGenerados = 0;
@@ -127,7 +136,7 @@ function reiniciarAplicacion() {
     iniciarTemporizador();
 }
 
-// Mostrar mensaje de fin de combates
+// Función para mostrar el mensaje de fin
 function mostrarMensajeFin() {
     const contenedorMensajeFin = document.getElementById('mensajeFin');
     contenedorMensajeFin.innerHTML = '<h2>Fin de los combates</h2>';
@@ -140,9 +149,7 @@ function mostrarMensajeFin() {
     contenedorMensajeFin.appendChild(video);
 }
 
-// Eventos de los botones
 botonGenerar.addEventListener('click', generarCombate);
 botonReiniciar.addEventListener('click', reiniciarAplicacion);
 
-// Iniciar el temporizador al cargar la página
 iniciarTemporizador();
