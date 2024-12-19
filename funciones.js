@@ -170,7 +170,9 @@ window.addEventListener('load', () => {
     const musicaFondo = document.getElementById('musica-fondo');
     if (musicaFondo) {
         musicaFondo.volume = 0.3; 
-        musicaFondo.play(); // Reproducir la música al cargar la página
+        musicaFondo.play().catch(error => {
+            console.log("Autoplay fue bloqueado:", error);
+        }); // Intentar reproducir la música al cargar la página
     }
 });
 
