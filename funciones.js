@@ -26,13 +26,16 @@ const equipos = [
 
 let equiposDisponibles = [...equipos];
 let combatesGenerados = 0;
+let numeroCombate = 1;
 const cuadroCruces = document.getElementById('cuadroCruces');
 const botonGenerar = document.getElementById('generarCombate');
 const botonReiniciar = document.getElementById('reiniciar');
 const displaySegundos = document.getElementById('segundos');
 let temporizador;
 let segundosTranscurridos = 0;
-let numeroCombate = 1;
+
+// Crear una instancia del sonido golpe_pelea
+const sonidoGolpe = new Audio('audio/golpe_pelea.mp3');
 
 // Función para iniciar el temporizador
 function iniciarTemporizador() {
@@ -58,6 +61,10 @@ function detenerTemporizador() {
  * deshabilita el botón de generación de combates y muestra un mensaje de fin de combates.
  */
 function generarCombate() {
+    // Reproducir el sonido golpe_pelea
+    sonidoGolpe.currentTime = 0; // Reiniciar el sonido si ya está reproduciéndose
+    sonidoGolpe.play();
+
     if (equiposDisponibles.length < 2) {
         botonGenerar.disabled = true;
         mostrarMensajeFin();
@@ -128,12 +135,15 @@ function crearDivEquipo(equipo) {
 function reiniciarAplicacion() {
     equiposDisponibles = [...equipos];
     combatesGenerados = 0;
+    numeroCombate = 1; // Reiniciar el contador de combates
     cuadroCruces.innerHTML = '';
     botonGenerar.disabled = false;
     segundosTranscurridos = 0;
     displaySegundos.textContent = segundosTranscurridos;
     detenerTemporizador();
     iniciarTemporizador();
+    const contenedorMensajeFin = document.getElementById('mensajeFin');
+    contenedorMensajeFin.innerHTML = '';
 }
 
 // Función para mostrar el mensaje de fin
@@ -154,3 +164,41 @@ botonGenerar.addEventListener('click', generarCombate);
 botonReiniciar.addEventListener('click', reiniciarAplicacion);
 
 iniciarTemporizador();
+
+// música de fondo
+window.addEventListener('load', () => {
+    const musicaFondo = document.getElementById('musica-fondo');
+    if (musicaFondo) {
+        musicaFondo.volume = 0.3; 
+        musicaFondo.play(); // Reproducir la música al cargar la página
+    }
+});
+
+// Obtener los botones de pausar y reanudar música
+const botonPausarMusica = document.getElementById('pausarMusica');
+const botonReanudarMusica = document.getElementById('reanudarMusica');
+
+// Función para pausar la música
+function pausarMusica() {
+    const musica = document.getElementById('musica-fondo');
+    if (musica && !musica.paused) {
+        musica.pause();
+    }
+}
+
+// Función para reanudar la música
+function reanudarMusica() {
+    const musica = document.getElementById('musica-fondo');
+    if (musica && musica.paused) {
+        musica.play();
+    }
+}
+
+// Asignar las funciones a los botones correspondientes
+if (botonPausarMusica) {
+    botonPausarMusica.addEventListener('click', pausarMusica);
+}
+
+if (botonReanudarMusica) {
+    botonReanudarMusica.addEventListener('click', reanudarMusica);
+}

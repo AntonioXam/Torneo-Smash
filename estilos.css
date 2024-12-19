@@ -1,21 +1,19 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('https://i.imgur.com/your-pokemon-background.jpg'); /* Reemplaza con la URL de tu imagen */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-color: #f0f0f0; /* Color de respaldo */
-    position: relative; /* Posicionamiento necesario para el pseudo-elemento */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Pseudo-elemento para la imagen de fondo */
+/**
+ * Crea un pseudo-elemento ::before en el elemento body para generar una superposición de fondo
+ * Esta técnica permite una imagen de fondo semitransparente que cubre todo el viewport
+ * 
+ * - Usa contenido vacío con posicionamiento fijo para cubrir toda la pantalla
+ * - Aplica una imagen de fondo con tamaño cover para asegurar cobertura completa del viewport
+ * - Establece opacidad 0.3 para crear un efecto de fondo difuminado
+ * - Usa z-index: -1 para posicionar la superposición detrás del contenido principal
+ * - La imagen de fondo permanece fija y centrada mientras el usuario hace scroll
+ * 
+ * Nota: El pseudo-elemento ::before se usa comúnmente para superposiciones decorativas como esta
+ * ya que no interfiere con la estructura del contenido principal
+ */
 body::before {
     content: "";
+    font-family: 'Courier New', Courier, monospace;
     position: fixed;
     top: 0;
     left: 0;
@@ -25,19 +23,28 @@ body::before {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.3; /* Ajusta la opacidad según prefieras */
-    z-index: -1; /* Asegura que la imagen quede detrás del contenido */
+    opacity: 0.3;
+    z-index: -1;
 }
 
 header, footer {
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     text-align: center;
     padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
 }
 
 main {
@@ -46,15 +53,19 @@ main {
 }
 
 #timer-container {
-    background-color: #fff;
-    border: 2px solid #333;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+    width: 100%;
+    max-width: 600px; 
+    margin: 20px auto;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px; /* Margen adecuado */
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 #timer {
@@ -70,18 +81,36 @@ main {
     justify-content: center;
 }
 
+/*
+ * Estilos para la clase .combate que representa un contenedor de batalla
+ * 
+ * La clase establece:
+ * - Un contenedor centrado con fondo gris claro y bordes redondeados
+ * - Sombra suave para dar efecto de elevación
+ * - Ancho responsivo del 80% con máximo de 600px
+ * - Padding interior y margen automático horizontal
+ * 
+ * Incluye un pseudo-elemento ::before que:
+ * - Agrega una imagen de fondo (campobatalla.jpg) semi-transparente
+ * - La imagen se escala para cubrir todo el contenedor
+ * - Se posiciona con z-index 0 detrás del contenido
+ * 
+ * Los elementos hijos directos:
+ * - Se posicionan por encima de la imagen de fondo con z-index 1
+ * - Mantienen su posición relativa
+ */
 .combate {
-    position: relative; /* Posicionamiento correcto para el pseudo-elemento */
-    background-color: #f0f0f0; /* Fondo del combate */
+    position: relative;
+    background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 20px;
-    width: 80%; /* Más responsivo */
-    max-width: 600px; /* Máximo ancho para mejor responsividad */
-    margin: 10px auto; /* Centrar los combates */
+    width: 80%;
+    max-width: 600px;
+    margin: 10px auto;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
-    border-radius: 8px; /* Bordes redondeados */
-    overflow: hidden; /* Ocultar exceso de imagen de fondo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .combate::before {
@@ -95,8 +124,8 @@ main {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.5; /* Opacidad ajustable */
-    z-index: 0; /* Imagen al fondo */
+    opacity: 0.5;
+    z-index: 0;
 }
 
 .combate > * {
@@ -128,7 +157,7 @@ main {
     height: 120px;
     border-radius: 10px;
     margin-left: 10px;
-    border: 3px solid #ffcb05; /* Borde decorativo */
+    border: 3px solid #ffcb05;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s;
 }
@@ -138,13 +167,13 @@ main {
 }
 
 .equipo span {
-    position: static; /* Posicionamiento estático */
-    margin-top: 5px; /* Espaciado arriba del nombre */
-    color: #fff; /* Nombre en blanco */
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro para mejor contraste */
+    position: static;
+    margin-top: 5px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 5px 10px;
     border-radius: 5px;
-    font-size: 14px; /* Tamaño de fuente ajustado */
+    font-size: 14px;
 }
 
 video {
@@ -169,9 +198,8 @@ video {
     }
 
     #timer-container {
-        flex-direction: column;
-        align-items: center;
-        padding: 8px;
+        width: 90%;
+        padding: 15px;
     }
 
     #timer {
@@ -193,6 +221,16 @@ video {
 
     .vs {
         font-size: 18px;
+    }
+
+    #timer-container {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .d-flex.flex-wrap.justify-content-center.mt-4 button {
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     button {
